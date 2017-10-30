@@ -8,5 +8,14 @@
 
     <modules>
         <module>stu-basic-java</module>
+        <module>stu-clipboard</module>
+        <module>stu-pattern</module>
+        <module>stu-datatype</module>
+        <module>stu-des</module>
+        <module>stu-i18n</module>
+        <module>stu-xml</module>
+        <module>stu-image</module>
+        <module>stu-jnotify</module>
+        <module>program-practise</module>
     </modules>
 </project>
