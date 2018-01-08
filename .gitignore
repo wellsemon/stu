@@ -1,5 +1,5 @@
 /.settings/
 /.project
-/stu.iml
+*.iml
 /.idea/
 target/
