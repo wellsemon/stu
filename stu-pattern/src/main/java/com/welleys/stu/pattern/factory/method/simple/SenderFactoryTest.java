@@ -1,4 +1,4 @@
-package com.welleys.stu.pattern.factory.method;
+package com.welleys.stu.pattern.factory.method.simple;
 
 import org.junit.Test;
 
