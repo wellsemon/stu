@@ -13,3 +13,19 @@
 * SpringMvc 默认使用 jackson，支持此注解
 * 标记 field 是对象类型
     * 被标记对象内，可用不同标记进行过滤不需要的字段
+    
+## extends PropertyFilter
+> 序列化对象标记 @JsonFilter("id")  
+> 自定义 PropertyFilter，绑定到 FilterProvider  
+> FilterProvider 标识与 @JsonFilter 一致  
+> 绑定到 ObjectMapper
+
+* 支持自定义 PropertyFilter
+* 自动遍历各个层级的所有属性
+* 递归过滤时，每个类上都需 @JsonFilter("同一标识")
+* 定义接口，增加 @JsonFilter 注解，并调用 ObjectMapper.addMixIn(Target.class,Interface.class) 绑定注解到目标类，目标类与注解解耦
+
+## extends StdSerializer
+自定义序列化逻辑
+* module.addSerializer(Target.class, CustomSerializer)
+* ObjectMapper.registerModule
