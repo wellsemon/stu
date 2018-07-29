@@ -1,9 +1,9 @@
 package com.welleys.stu.json.jackson.jsonview;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
-
 public class UserBean implements Serializable {
     public interface All extends Info, Other{}
     public interface Name{}
@@ -63,7 +63,7 @@ public class UserBean implements Serializable {
 
     @Override
     public String toString() {
-        return "UserBean{" +
+        return "User{" +
                 "id=" + id +
                 ", uname='" + uname + '\'' +
                 ", age=" + age +

@@ -1,9 +1,9 @@
 package com.welleys.stu.json.jackson.jsonview;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
-
 public class AddressBean implements Serializable {
     public interface Other{}
 
@@ -44,7 +44,7 @@ public class AddressBean implements Serializable {
     }
     @Override
     public String toString() {
-        return "AddressBean{" +
+        return "Address{" +
                 "id=" + id +
                 ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
