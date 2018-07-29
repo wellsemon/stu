@@ -13,15 +13,11 @@ import java.util.List;
  * @author welleys
  */
 public class IdeaBeanPropertyFilter extends SimpleBeanPropertyFilter {
-    private List<String> includeFirstLevelProp = new ArrayList<>();
-    private List<String> includeSecondeLevelProp = new ArrayList<>();
-    private List<String> includeThirdLevelProp = new ArrayList<>();
+    private static List<String> includeFirstLevelProp = new ArrayList<>();
+    private static List<String> includeSecondeLevelProp = new ArrayList<>();
+    private static List<String> includeThirdLevelProp = new ArrayList<>();
 
-    /**
-     * todo 2018/7/29 优化
-     */
-    @Override
-    public void serializeAsField(Object pojo, JsonGenerator jgen, SerializerProvider provider, PropertyWriter writer) throws Exception {
+    static {
         includeFirstLevelProp.add("desc");
         includeFirstLevelProp.add("ideaModules");
 
@@ -29,19 +25,32 @@ public class IdeaBeanPropertyFilter extends SimpleBeanPropertyFilter {
         includeSecondeLevelProp.add("ideaModuleDesc");
 
         includeThirdLevelProp.add("desc");
+    }
+
+    /**
+     * todo 2018/7/29 优化
+     */
+    @Override
+    public void serializeAsField(Object pojo, JsonGenerator jgen, SerializerProvider provider, PropertyWriter writer) throws Exception {
 
         if (writer instanceof BeanPropertyWriter) {
             BeanPropertyWriter beanPropWriter = (BeanPropertyWriter) writer;
-            Class<?> clazz = beanPropWriter.getMember().getDeclaringClass();
+            Class<?> clazz = pojo.getClass();
 
             String propertyName = beanPropWriter.getName();
 //            System.out.println(beanPropWriter.toString());
 //            System.out.println(beanPropWriter.getFullName());
             if (includeFirstLevelProp.contains(propertyName) && clazz.equals(IdeaBean.class)) {
                 beanPropWriter.serializeAsField(pojo, jgen, provider);
-                return;
             } else if (includeSecondeLevelProp.contains(propertyName) && clazz.equals(IdeaModuleBean.class)) {
-                beanPropWriter.serializeAsField(pojo, jgen, provider);
+                if (null != pojo) {
+                    IdeaModuleBean moduleBean = (IdeaModuleBean) pojo;
+                    String desc = moduleBean.getIdeaModuleDesc().getDesc();
+                    if (desc.equalsIgnoreCase("project-desc")) {
+                        beanPropWriter.serializeAsField(pojo, jgen, provider);
+                        return;
+                    }
+                }
             } else if (includeThirdLevelProp.contains(propertyName) && clazz.equals(IdeaModuleDescBean.class)) {
                 beanPropWriter.serializeAsField(pojo, jgen, provider);
             } else if (!jgen.canOmitFields()) {
