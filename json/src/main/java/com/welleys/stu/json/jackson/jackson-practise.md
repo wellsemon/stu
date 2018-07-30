@@ -32,3 +32,4 @@
 自定义序列化逻辑
 * module.addSerializer(Target.class, CustomSerializer)
 * ObjectMapper.registerModule
+* 自定义序列化器，必须传入目标对象，否则报错。JsonSerializer 同样如此

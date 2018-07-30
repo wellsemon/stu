@@ -1,32 +1,15 @@
 package com.welleys.stu.json.jackson.stdserializer;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.io.Serializable;
+import java.util.List;
 
-@JsonSerialize(using = MySerilizer.class)
 public class User implements Serializable {
-    public interface All extends Info, Other {
-    }
-
-    public interface Name {
-    }
-
-    public interface Info {
-    }
-
-    public interface Other {
-    }
-
     private Long id;
     private String uname;
     private Integer age;
     private String email;
-    @JsonView(User.Info.class)
-    private Address address;
+    private List<Address> addresses;
 
-    @JsonView({Other.class})
     public Long getId() {
         return id;
     }
@@ -35,17 +18,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    @JsonView(Info.class)
     public String getUname() {
         return uname;
     }
 
-    @JsonView({Name.class})
     public void setUname(String uname) {
         this.uname = uname;
     }
 
-    @JsonView({Other.class, Info.class})
     public Integer getAge() {
         return age;
     }
@@ -54,7 +34,6 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    @JsonView({Other.class, Info.class})
     public String getEmail() {
         return email;
     }
@@ -64,12 +43,12 @@ public class User implements Serializable {
     }
 
 
-    public Address getAddress() {
-        return address;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override
@@ -79,7 +58,7 @@ public class User implements Serializable {
                 ", uname='" + uname + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", address=" + address +
+                ", addresses=" + addresses +
                 '}';
     }
 }

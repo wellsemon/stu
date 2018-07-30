@@ -1,21 +1,12 @@
 package com.welleys.stu.json.jackson.stdserializer;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.io.Serializable;
 
-@JsonSerialize(using = MySerilizer.class)
 public class Address implements Serializable {
-    public interface Other {
-    }
 
     private static final long serialVersionUID = -8539904875616130846L;
-    @JsonView(Other.class)
     private Long id;
-    @JsonView(User.Info.class)
     private String province;
-    @JsonView(User.Info.class)
     private String city;
 
     public static long getSerialVersionUID() {
