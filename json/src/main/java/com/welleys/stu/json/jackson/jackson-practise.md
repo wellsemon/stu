@@ -26,10 +26,19 @@
 * 递归过滤时，每个类上都需 @JsonFilter("同一标识")
 * 定义接口，增加 @JsonFilter 注解，并调用 ObjectMapper.addMixIn(Target.class,Interface.class) 绑定注解到目标类，目标类与注解解耦
 ### 实例
-* 对象属性不满足条件时，该对象不参与序列化
+* 对象属性不满足条件时，该对象不参与序列化`
 
 ## extends StdSerializer
 自定义序列化逻辑
 * module.addSerializer(Target.class, CustomSerializer)
 * ObjectMapper.registerModule
 * 自定义序列化器，必须传入目标对象，否则报错。JsonSerializer 同样如此
+* 利用 jsonGenerator 如同拼接字符串一般，进行对象序列化
+* jsonGenerator.writeStartObject() 开始构建 {}  
+jsonGenerator.writeStartArray() 开始构建 []
+*  一个开始必有一个结束：jsonGenerator.writeEndArray(), jsonGenerator.writeEndObject();
+* jsonGenerator.writeXxxField 序列化指定 filed 和其值，支持多种类型
+* jsonGenerator.writeFieldName 可指定 key 值，可用于 jsonArray 的 key
+* jsonGenerator.writeXxx 可直接序列化特定类型对象
+* 使用 writeStartArray 开始处理 List, List.element 使用 writeStartObject 开始处理
+* 处理过程中, 根据属性值来判断是否参与序列化
