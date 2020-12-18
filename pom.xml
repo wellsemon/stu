@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.welleys.stu</groupId>
@@ -7,18 +7,23 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>json</module>
+        <module>program-practise</module>
         <module>stu-basic-java</module>
         <module>stu-clipboard</module>
         <module>stu-pattern</module>
         <module>stu-datatype</module>
         <module>stu-des</module>
+        <module>stu-excel</module>
+        <module>stu-hibernate</module>
         <module>stu-i18n</module>
-        <module>stu-xml</module>
         <module>stu-image</module>
         <module>stu-jnotify</module>
-        <module>program-practise</module>
-    <module>stu-hibernate</module>
-  </modules>
+        <module>stu-network</module>
+        <module>stu-optional</module>
+        <module>stu-pattern</module>
+        <module>stu-xml</module>
+    </modules>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
@@ -31,6 +36,19 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+
+
+        <dependency>
+            <scope>compile</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
         </dependency>
     </dependencies>
 </project>
